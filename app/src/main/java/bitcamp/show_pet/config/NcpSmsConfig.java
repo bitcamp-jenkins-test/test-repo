@@ -9,7 +9,6 @@ import org.apache.commons.codec.binary.Base64;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-// application-ncp.properties로 부터 불러온다.
 @Component
 @ConfigurationProperties(prefix = "naver-cloud-sms")
 public class NcpSmsConfig {
