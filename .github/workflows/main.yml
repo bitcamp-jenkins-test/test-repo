@@ -17,25 +17,15 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: 17
+          distribution: 'adopt'
 
       - name: Build and Test
         run: |
-          ./gradlew build
-
-      - name: Check build status
-        run: |
-          if [ $? -ne 0 ]; then
-            echo "Build failed. Blocking merge."
-            exit 1
-          else
-            echo "Build successful."
-          fi
+          ./gradlew build checkBuildStatus
 
       - name: Send Slack notification on failure
         if: failure()
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
-          curl -X POST -H 'Content-type: application/json' --data '{
-            "text": "GitHub Actions build failed! merge blocked"
-          }' $SLACK_WEBHOOK_URL
+          curl -X POST -H 'Content-type: application/json' --data '{"text": "GitHub Actions build failed! merge blocked"}' $SLACK_WEBHOOK_URL

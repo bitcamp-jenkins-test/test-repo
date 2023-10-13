@@ -17,14 +17,6 @@ tasks.withType(JavaCompile) {
     targetCompatibility = '11'
 }
 
-tasks.register('checkBuildStatus') {
-    doLast {
-        if (project.hasProperty('buildFailed') && project.buildFailed) {
-            throw new GradleException("Build failed. Blocking merge.")
-        }
-    }
-}
-
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -66,9 +58,14 @@ dependencies {
     implementation 'org.apache.clerezza.ext:org.json.simple:0.4'
 }
 
+tasks.register('checkBuildStatus') {
+    doLast {
+        if (project.hasProperty('buildFailed') && project.buildFailed) {
+            throw new GradleException("Build failed. Blocking merge.")
+        }
+    }
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }
-
-// 빌드 실패 시 머지 블락
-build.dependsOn 'checkBuildStatus'
