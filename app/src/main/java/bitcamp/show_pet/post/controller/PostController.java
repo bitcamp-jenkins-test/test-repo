@@ -37,8 +37,8 @@ public class PostController {
   @Autowired
   NcpObjectStorageService ncpObjectStorageService;
 
-  @Autowired
-  DefaultNotificationService defaultNotificationService;
+  /*@Autowired
+  DefaultNotificationService defaultNotificationService;*/
 
  /* @GetMapping("form")
   public void form() {
