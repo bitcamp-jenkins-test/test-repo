@@ -19,7 +19,7 @@ jobs:
           java-version: 17
           distribution: 'adopt'
 
-      - name: Build and Test
+      - name: Build and Test Workflow
         run: |
           ./gradlew build checkBuildStatus
 
