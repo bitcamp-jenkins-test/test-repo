@@ -31,18 +31,18 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/post")
 public class PostController {
 
-/*  @Autowired
-  PostService postService;*/
+  @Autowired
+  PostService postService;
 
   @Autowired
   NcpObjectStorageService ncpObjectStorageService;
 
-/*  @Autowired
-  DefaultNotificationService defaultNotificationService;*/
+  @Autowired
+  DefaultNotificationService defaultNotificationService;
 
-//  @GetMapping("form")
-//  public void form() {
-//  }
+  @GetMapping("form")
+  public void form() {
+  }
 
   @PostMapping("add")
   public String add(Post post, MultipartFile[] files, HttpSession session) throws Exception {
