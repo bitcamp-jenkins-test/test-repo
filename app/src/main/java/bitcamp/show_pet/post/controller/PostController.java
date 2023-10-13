@@ -40,9 +40,9 @@ public class PostController {
   @Autowired
   DefaultNotificationService defaultNotificationService;
 
-  @GetMapping("form")
-  public void form() {
-  }
+//  @GetMapping("form")
+//  public void form() {
+//  }
 
   @PostMapping("add")
   public String add(Post post, MultipartFile[] files, HttpSession session) throws Exception {
