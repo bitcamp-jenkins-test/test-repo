@@ -34,8 +34,8 @@ public class PostController {
   @Autowired
   PostService postService;
 
-  @Autowired
-  NcpObjectStorageService ncpObjectStorageService;
+/*  @Autowired
+  NcpObjectStorageService ncpObjectStorageService;*/
 
   /*@Autowired
   DefaultNotificationService defaultNotificationService;*/
