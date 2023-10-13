@@ -34,15 +34,15 @@ public class PostController {
   @Autowired
   PostService postService;
 
-/*  @Autowired
-  NcpObjectStorageService ncpObjectStorageService;*/
+  @Autowired
+  NcpObjectStorageService ncpObjectStorageService;
 
-  /*@Autowired
-  DefaultNotificationService defaultNotificationService;*/
+  @Autowired
+  DefaultNotificationService defaultNotificationService;
 
- /* @GetMapping("form")
+  @GetMapping("form")
   public void form() {
-  }*/
+  }
 
   @PostMapping("add")
   public String add(Post post, MultipartFile[] files, HttpSession session) throws Exception {
