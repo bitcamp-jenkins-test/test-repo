@@ -31,8 +31,8 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/post")
 public class PostController {
 
-  @Autowired
-  PostService postService;
+/*  @Autowired
+  PostService postService;*/
 
   @Autowired
   NcpObjectStorageService ncpObjectStorageService;
