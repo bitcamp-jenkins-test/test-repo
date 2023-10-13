@@ -17,6 +17,14 @@ tasks.withType(JavaCompile) {
     targetCompatibility = '11'
 }
 
+tasks.register('checkBuildStatus') {
+    doLast {
+        if (project.hasProperty('buildFailed') && project.buildFailed) {
+            throw new GradleException("Build failed. Blocking merge.")
+        }
+    }
+}
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -61,3 +69,6 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+// 빌드 실패 시 머지 블락
+build.dependsOn 'checkBuildStatus'

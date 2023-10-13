@@ -1,0 +1,41 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+
+      - name: Build and Test
+        run: |
+          ./gradlew build # 또는 원하는 빌드 명령어 실행
+
+      - name: Check build status
+        run: |
+          if [ $? -ne 0 ]; then
+            echo "Build failed. Blocking merge."
+            exit 1
+          else
+            echo "Build successful."
+          fi
+
+      - name: Send Slack notification on failure
+        if: failure()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{
+            "text": "GitHub Actions build failed! merge blocked"
+          }' $SLACK_WEBHOOK_URL
